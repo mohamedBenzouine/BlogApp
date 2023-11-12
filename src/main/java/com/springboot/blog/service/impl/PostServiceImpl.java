@@ -39,6 +39,7 @@ public class PostServiceImpl implements PostService {
   // convert Entity ento DTO
   private PostDto mapToDto (Post post){
     PostDto postDto = new PostDto();
+    postDto.setId(post.getId());
     postDto.setTitle(post.getTitle());
     postDto.setDescription(post.getDescription());
     postDto.setContent(post.getContent());
@@ -57,7 +58,7 @@ public class PostServiceImpl implements PostService {
   @Override
   public PostResponse getAllPosts(int pageNo, int pageSize, String sortBy,String sortDir) {
 
-    Sort sort = sortDir.equalsIgnoreCase(Direction.ASC.name()) ? Sort.by(sortBy).ascending()
+    Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
         :Sort.by(sortBy).descending();
 
     // create Pageable instance
@@ -81,7 +82,6 @@ public class PostServiceImpl implements PostService {
   @Override
   public PostDto getPostById(Long id) {
     Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","id",id));
-
     return mapToDto(post);
   }
 

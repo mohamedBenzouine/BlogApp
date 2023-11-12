@@ -17,9 +17,7 @@ import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 @Entity
-@Table(
-    name = "posts",uniqueConstraints = {@UniqueConstraint(columnNames = {"title"})}
-)
+@Table(name = "posts",uniqueConstraints = {@UniqueConstraint(columnNames = {"title"})})
 public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,5 +30,4 @@ public class Post {
   private String content;
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<Comment> comments = new HashSet<>();
-
 }

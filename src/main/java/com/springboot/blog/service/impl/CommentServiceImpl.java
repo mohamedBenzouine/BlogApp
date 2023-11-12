@@ -7,6 +7,8 @@ import com.springboot.blog.exception.ResourceNotFoundException;
 import com.springboot.blog.repository.CommentRepository;
 import com.springboot.blog.repository.PostRepository;
 import com.springboot.blog.service.CommentService;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,6 +37,17 @@ public class CommentServiceImpl implements CommentService {
     Comment newComment = commentRepository.save(comment);
 
     return mapToDto(newComment);
+  }
+
+  @Override
+  public List<CommentDto> getCommentsByPostId(long postId) {
+    // retrieve comment by postId
+    List<Comment> comments = commentRepository.findByPostId(postId);
+
+    //convert
+    return comments.stream()
+        .map(comment -> mapToDto(comment))
+        .collect(Collectors.toList());
   }
 
   private  CommentDto mapToDto(Comment comment){
