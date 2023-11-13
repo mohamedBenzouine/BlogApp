@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
-
   private PostService postService;
 
   public PostController(PostService postService) {
@@ -32,7 +31,7 @@ public class PostController {
     return  new ResponseEntity<>(postService.createPost(postDto), HttpStatus.CREATED);
   }
 
-  // get all posts rest api
+  // Get all posts rest api
   @GetMapping
   public PostResponse getAllPosts(
       @RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
@@ -43,20 +42,20 @@ public class PostController {
     return postService.getAllPosts(pageNo, pageSize, sortBy, sortDir);
   }
 
-  // get post by ID
+  // Get post by id rest api
   @GetMapping("/{id}")
-  public ResponseEntity<PostDto> getPostById(@PathVariable("id") Long id){
+  public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") Long id){
     return ResponseEntity.ok(postService.getPostById(id));
 
   }
 
-  // Update post by id
+  // Update post by id rest api
   @PutMapping("/{id}")
   public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto, @PathVariable(name = "id") Long id){
     PostDto postResponse = postService.updatePost(postDto, id);
     return new ResponseEntity<>(postResponse, HttpStatus.OK);
   }
-
+  // Delete post rst api
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deletePost(@PathVariable(name = "id") Long id){
     postService.deletePostById(id);
