@@ -20,7 +20,7 @@ public class PostDto {
   // description should not be empty or null
   // description should have at least 10 characters
   @NotEmpty
-  @Size(min = 10, message = "ost description should have at least 10 characters")
+  @Size(min = 10, message = "Post description should have at least 10 characters")
   private String description;
 
   // content should not be empty or null
