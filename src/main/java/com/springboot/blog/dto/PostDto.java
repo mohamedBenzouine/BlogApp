@@ -3,8 +3,8 @@ package com.springboot.blog.dto;
 import java.util.Set;
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Data
 public class PostDto {

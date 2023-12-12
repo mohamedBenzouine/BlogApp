@@ -1,11 +1,10 @@
 package com.springboot.blog.dto;
 
 import lombok.Data;
-import net.bytebuddy.implementation.bind.annotation.Empty;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Data
 public class CommentDto {
